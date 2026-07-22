@@ -2,6 +2,11 @@
 #  Robust-and-Efficient-Audio-Deepfake-Detection  .gitignore
 # ============================================================
 
+# ----- Smoke / Debug / Test Outputs (never commit) ---------
+**/smoke/
+**/debug/
+**/test_run/
+
 # ----- Datasets / Raw Audio --------------------------------
 data/
 # keep the download instructions file
