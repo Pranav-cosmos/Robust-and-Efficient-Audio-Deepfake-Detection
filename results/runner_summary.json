@@ -1,0 +1,86 @@
+{
+  "config": {
+    "config": "configs/base_config.yaml",
+    "seed": 42,
+    "device": "cuda",
+    "models": [
+      "random_forest",
+      "xgboost",
+      "simple_cnn",
+      "mobilenetv2",
+      "resnet18"
+    ],
+    "skip_features": false,
+    "debug": false,
+    "smoke": false,
+    "continue_on_error": false,
+    "no_incremental_artifacts": false,
+    "python": "C:\\Users\\Hp\\anaconda3\\python.exe"
+  },
+  "selected_models": [
+    "random_forest",
+    "xgboost",
+    "simple_cnn",
+    "mobilenetv2",
+    "resnet18"
+  ],
+  "results": {
+    "feature_extraction": {
+      "success": true,
+      "time_s": 4154.678814172745
+    },
+    "02_train_random_forest": {
+      "success": true,
+      "time_s": 49.55883765220642
+    },
+    "artifacts_after_random_forest": {
+      "success": true,
+      "time_s": 7.600068092346191
+    },
+    "02_train_xgboost": {
+      "success": true,
+      "time_s": 17.291781663894653
+    },
+    "artifacts_after_xgboost": {
+      "success": true,
+      "time_s": 7.694248676300049
+    },
+    "03_train_simple_cnn": {
+      "success": true,
+      "time_s": 2933.4632606506348
+    },
+    "artifacts_after_simple_cnn": {
+      "success": true,
+      "time_s": 8.320504426956177
+    },
+    "03_train_mobilenetv2": {
+      "success": true,
+      "time_s": 2537.1936070919037
+    },
+    "artifacts_after_mobilenetv2": {
+      "success": true,
+      "time_s": 12.51910138130188
+    },
+    "03_train_resnet18": {
+      "success": true,
+      "time_s": 2608.0604689121246
+    },
+    "artifacts_after_resnet18": {
+      "success": true,
+      "time_s": 9.523248672485352
+    },
+    "final_artifacts": {
+      "success": true,
+      "time_s": 7.678030729293823
+    }
+  },
+  "completed_models": [
+    "random_forest",
+    "xgboost",
+    "simple_cnn",
+    "mobilenetv2",
+    "resnet18"
+  ],
+  "failed_models": [],
+  "total_time_seconds": 12353.757481336594
+}

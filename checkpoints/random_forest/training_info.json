@@ -1,0 +1,30 @@
+{
+  "model": "random_forest",
+  "seed": 42,
+  "training_time_seconds": 30.214093446731567,
+  "model_size_mb": 13.71077823638916,
+  "parameters": {
+    "total_params": 178942,
+    "trainable_params": 178942
+  },
+  "validation_metrics": {
+    "accuracy": 0.9083480920946707,
+    "precision": 0.921967876565069,
+    "recall": 0.9808934337997847,
+    "f1": 0.9505182867201252,
+    "mcc": 0.371573253661307,
+    "roc_auc": 0.92596508359906,
+    "eer": 0.14948869752420366,
+    "eer_threshold": 0.8124898117636826
+  },
+  "evaluation_metrics": {
+    "accuracy": 0.9073936297148953,
+    "precision": 0.9377645997951979,
+    "recall": 0.9604739989355374,
+    "f1": 0.9489834584838104,
+    "mcc": 0.452379178090332,
+    "roc_auc": 0.9122761404647092,
+    "eer": 0.16514824207131895,
+    "eer_threshold": 0.7256884309646584
+  }
+}

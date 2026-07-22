@@ -1,0 +1,30 @@
+2026-07-22 21:14:06 | train_random_forest | INFO | Training random_forest with seed 42
+2026-07-22 21:14:06 | train_random_forest | INFO | Loading training features from ./cache/features\mfcc\asvspoof2019_train.npz
+2026-07-22 21:14:06 | train_random_forest | INFO | Training set: 25380 samples, 240 features
+2026-07-22 21:14:07 | train_random_forest | INFO | Validation set: 24844 samples
+2026-07-22 21:14:07 | train_random_forest | INFO | Evaluation set: 71237 samples
+2026-07-22 21:14:08 | train_random_forest | INFO | Starting training...
+2026-07-22 21:14:38 | train_random_forest | INFO | Training completed in 30.2s
+2026-07-22 21:14:38 | train_random_forest | INFO | Model saved to ./checkpoints\random_forest\random_forest_model.pkl
+2026-07-22 21:14:39 | train_random_forest | INFO | Validation Results:
+2026-07-22 21:14:39 | train_random_forest | INFO |   accuracy: 0.9083
+2026-07-22 21:14:39 | train_random_forest | INFO |   precision: 0.9220
+2026-07-22 21:14:39 | train_random_forest | INFO |   recall: 0.9809
+2026-07-22 21:14:39 | train_random_forest | INFO |   f1: 0.9505
+2026-07-22 21:14:39 | train_random_forest | INFO |   mcc: 0.3716
+2026-07-22 21:14:39 | train_random_forest | INFO |   roc_auc: 0.9260
+2026-07-22 21:14:39 | train_random_forest | INFO |   eer: 0.1495
+2026-07-22 21:14:39 | train_random_forest | INFO |   eer_threshold: 0.8125
+2026-07-22 21:14:41 | train_random_forest | INFO | Evaluation Results:
+2026-07-22 21:14:41 | train_random_forest | INFO |   accuracy: 0.9074
+2026-07-22 21:14:41 | train_random_forest | INFO |   precision: 0.9378
+2026-07-22 21:14:41 | train_random_forest | INFO |   recall: 0.9605
+2026-07-22 21:14:41 | train_random_forest | INFO |   f1: 0.9490
+2026-07-22 21:14:41 | train_random_forest | INFO |   mcc: 0.4524
+2026-07-22 21:14:41 | train_random_forest | INFO |   roc_auc: 0.9123
+2026-07-22 21:14:41 | train_random_forest | INFO |   eer: 0.1651
+2026-07-22 21:14:41 | train_random_forest | INFO |   eer_threshold: 0.7257
+2026-07-22 21:14:41 | train_random_forest | INFO | Model size: 13.71 MB
+2026-07-22 21:14:41 | train_random_forest | INFO | Parameters: {'total_params': 178942, 'trainable_params': 178942}
+2026-07-22 21:14:41 | train_random_forest | INFO | Training time: 30.2s
+2026-07-22 21:14:42 | train_random_forest | INFO | All outputs saved to: ./results\random_forest

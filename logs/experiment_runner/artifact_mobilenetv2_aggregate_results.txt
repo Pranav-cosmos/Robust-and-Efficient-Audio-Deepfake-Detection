@@ -1,0 +1,21 @@
+============================================================
+AGGREGATING TRAINING RESULTS
+============================================================
+
+Scanning: C:\Users\Hp\VSCODE\codes and scripts\results and ./checkpoints
+  [OK] Found results for mobilenetv2 from C:\Users\Hp\VSCODE\codes and scripts\results\mobilenetv2\metrics.json
+  [OK] Found results for random_forest from C:\Users\Hp\VSCODE\codes and scripts\results\random_forest\metrics.json
+  [OK] Found results for simple_cnn from C:\Users\Hp\VSCODE\codes and scripts\results\simple_cnn\metrics.json
+  [OK] Found results for xgboost from C:\Users\Hp\VSCODE\codes and scripts\results\xgboost\metrics.json
+
+Found results for 4 model(s): ['mobilenetv2', 'random_forest', 'simple_cnn', 'xgboost']
+
+[SAVED] C:\Users\Hp\VSCODE\codes and scripts\results\all_results.json
+
+Summary:
+  Model                        EER (%)    Accuracy (%)     F1-Score     Time (s)
+  ------------------------------------------------------------------------------
+  mobilenetv2                     5.38%          90.40%       0.9435      1009.7s
+  random_forest                  16.51%          90.74%       0.9490        30.2s
+  simple_cnn                      7.99%          67.97%       0.7826      1484.6s
+  xgboost                        13.74%          89.72%       0.9408         2.5s

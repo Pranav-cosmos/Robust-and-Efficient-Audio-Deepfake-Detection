@@ -1,0 +1,27 @@
+============================================================
+GENERATING PAPER FIGURES
+============================================================
+
+[FIG 1] EER bar chart
+
+[FIG 2] Accuracy comparison
+
+[FIG 3] ROC curves
+  [INFO] No val_scores.npz found. Skipping ROC curves.
+
+[FIG 4] Metrics radar chart
+
+[FIG 5] MFCC feature visualization
+Traceback (most recent call last):
+  File "C:\Users\Hp\VSCODE\codes and scripts\scripts\generate_paper_figures.py", line 327, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\Hp\VSCODE\codes and scripts\scripts\generate_paper_figures.py", line 320, in main
+    fig_mfcc_visualization(config, out_dir)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Hp\VSCODE\codes and scripts\scripts\generate_paper_figures.py", line 229, in fig_mfcc_visualization
+    X = data["X"]
+        ~~~~^^^^^
+  File "C:\Users\Hp\anaconda3\Lib\site-packages\numpy\lib\_npyio_impl.py", line 243, in __getitem__
+    raise KeyError(f"{key} is not a file in the archive") from None
+KeyError: 'X is not a file in the archive'

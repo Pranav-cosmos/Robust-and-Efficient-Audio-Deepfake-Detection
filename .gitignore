@@ -1,0 +1,72 @@
+# ============================================================
+#  Robust-and-Efficient-Audio-Deepfake-Detection  .gitignore
+# ============================================================
+
+# ----- Datasets / Raw Audio --------------------------------
+data/
+# keep the download instructions file
+!data/manifests/
+
+# ----- Large Binary Model Checkpoints ----------------------
+checkpoints/**/*.pt
+checkpoints/**/*.pth
+checkpoints/**/*.pkl
+checkpoints/**/*.h5
+checkpoints/**/*.onnx
+# Allow small metadata files inside checkpoint dirs
+!checkpoints/**/*.json
+!checkpoints/**/*.yaml
+!checkpoints/**/*.txt
+
+# ----- Cached Features (large .npz files) ------------------
+cache/
+
+# ----- Extracted Score Files (large .npz) ------------------
+results/**/*.npz
+
+# ----- Python Artifacts ------------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+
+# ----- Virtual Environments --------------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# ----- Jupyter Notebooks (checkpoints) ---------------------
+.ipynb_checkpoints/
+
+# ----- IDE / Editor Files ----------------------------------
+.vscode/settings.json
+.vscode/*.log
+.idea/
+*.swp
+*.swo
+*~
+
+# ----- OS Files --------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ----- Timestamped Run Logs (auto-generated noise) ---------
+logs/*.log
+logs/smoke/
+
+# ----- Temp / Misc -----------------------------------------
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# ----- Agent config (internal) ----------------------------
+.agents/

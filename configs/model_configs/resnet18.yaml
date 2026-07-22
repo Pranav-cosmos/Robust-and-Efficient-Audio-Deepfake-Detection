@@ -1,0 +1,23 @@
+# ResNet18 Configuration
+model:
+  name: "resnet18"
+  type: "deep"
+
+  architecture:
+    in_channels: 1
+    num_classes: 2
+    pretrained: true
+    embedding_dim: 512
+
+  training:
+    batch_size: 96
+    epochs: 12
+    learning_rate: 1.0e-3
+    weight_decay: 1.0e-4
+    optimizer: "adam"
+    scheduler: "cosine"
+    patience: 2
+
+  input:
+    feature_type: "mel_spectrogram"
+    n_mels: 80

@@ -1,0 +1,15 @@
+============================================================
+AGGREGATING TRAINING RESULTS
+============================================================
+
+Scanning: C:\Users\Hp\VSCODE\codes and scripts\results and ./checkpoints
+  [OK] Found results for random_forest from C:\Users\Hp\VSCODE\codes and scripts\results\random_forest\metrics.json
+
+Found results for 1 model(s): ['random_forest']
+
+[SAVED] C:\Users\Hp\VSCODE\codes and scripts\results\all_results.json
+
+Summary:
+  Model                        EER (%)    Accuracy (%)     F1-Score     Time (s)
+  ------------------------------------------------------------------------------
+  random_forest                  16.51%          90.74%       0.9490        30.2s

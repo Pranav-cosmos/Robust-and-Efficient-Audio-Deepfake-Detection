@@ -1,0 +1,31 @@
+2026-07-22 21:15:01 | train_xgboost | INFO | Training xgboost with seed 42
+2026-07-22 21:15:01 | train_xgboost | INFO | Loading training features from ./cache/features\mfcc\asvspoof2019_train.npz
+2026-07-22 21:15:01 | train_xgboost | INFO | Training set: 25380 samples, 240 features
+2026-07-22 21:15:01 | train_xgboost | INFO | Validation set: 24844 samples
+2026-07-22 21:15:02 | train_xgboost | INFO | Evaluation set: 71237 samples
+2026-07-22 21:15:02 | train_xgboost | INFO | XGBoost: GPU acceleration enabled (device=cuda)
+2026-07-22 21:15:02 | train_xgboost | INFO | Starting training...
+2026-07-22 21:15:05 | train_xgboost | INFO | Training completed in 2.5s
+2026-07-22 21:15:05 | train_xgboost | INFO | Model saved to ./checkpoints\xgboost\xgboost_model.pkl
+2026-07-22 21:15:05 | train_xgboost | INFO | Validation Results:
+2026-07-22 21:15:05 | train_xgboost | INFO |   accuracy: 0.9352
+2026-07-22 21:15:05 | train_xgboost | INFO |   precision: 0.9548
+2026-07-22 21:15:05 | train_xgboost | INFO |   recall: 0.9739
+2026-07-22 21:15:05 | train_xgboost | INFO |   f1: 0.9642
+2026-07-22 21:15:05 | train_xgboost | INFO |   mcc: 0.6217
+2026-07-22 21:15:05 | train_xgboost | INFO |   roc_auc: 0.9536
+2026-07-22 21:15:05 | train_xgboost | INFO |   eer: 0.1170
+2026-07-22 21:15:05 | train_xgboost | INFO |   eer_threshold: 0.8820
+2026-07-22 21:15:07 | train_xgboost | INFO | Evaluation Results:
+2026-07-22 21:15:07 | train_xgboost | INFO |   accuracy: 0.8972
+2026-07-22 21:15:07 | train_xgboost | INFO |   precision: 0.9733
+2026-07-22 21:15:07 | train_xgboost | INFO |   recall: 0.9103
+2026-07-22 21:15:07 | train_xgboost | INFO |   f1: 0.9408
+2026-07-22 21:15:07 | train_xgboost | INFO |   mcc: 0.5739
+2026-07-22 21:15:07 | train_xgboost | INFO |   roc_auc: 0.9381
+2026-07-22 21:15:07 | train_xgboost | INFO |   eer: 0.1374
+2026-07-22 21:15:07 | train_xgboost | INFO |   eer_threshold: 0.6491
+2026-07-22 21:15:07 | train_xgboost | INFO | Model size: 0.34 MB
+2026-07-22 21:15:07 | train_xgboost | INFO | Parameters: {'total_params': 14200, 'trainable_params': 14200}
+2026-07-22 21:15:07 | train_xgboost | INFO | Training time: 2.5s
+2026-07-22 21:15:08 | train_xgboost | INFO | All outputs saved to: ./results\xgboost

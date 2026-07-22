@@ -1,0 +1,80 @@
+# =============================================================================
+# Audio Deepfake Detection - Master Configuration
+# Optimized for high performance and fast convergence (< 4h runtime)
+# =============================================================================
+
+# --- Paths ---
+paths:
+  data_root: "./data"
+  asvspoof2019_root: "./data/ASVspoof2019_LA"
+  asvspoof2021_la_root: "./data/ASVspoof2021_LA"
+  asvspoof2021_df_root: "./data/ASVspoof2021_DF"
+  feature_cache: "./cache/features"
+  checkpoints: "./checkpoints"
+  logs: "./logs"
+  results: "./results"
+  paper_figures: "./paper_figures"
+
+# --- Audio Settings ---
+audio:
+  sample_rate: 16000
+  max_duration_sec: 4.0
+  max_samples: 64000  # sample_rate * max_duration_sec
+  mono: true
+  normalize: true
+
+# --- MFCC Settings ---
+mfcc:
+  n_mfcc: 40
+  n_fft: 512
+  win_length: 400       # 25 ms at 16kHz
+  hop_length: 160       # 10 ms at 16kHz
+  n_mels: 40
+  compute_deltas: true
+  compute_delta_deltas: true
+  pooling: "mean_std"   # Mean + std across frames -> 240-dim vector
+
+# --- Log Mel Spectrogram Settings ---
+mel_spectrogram:
+  n_mels: 80
+  n_fft: 512
+  win_length: 400       # 25 ms at 16kHz
+  hop_length: 160       # 10 ms at 16kHz
+  f_min: 20
+  f_max: 8000
+  log_offset: 1.0e-6
+
+# --- Training Defaults ---
+training:
+  batch_size: 96
+  epochs: 12
+  learning_rate: 1.0e-3
+  weight_decay: 1.0e-4
+  optimizer: "adam"
+  scheduler: "cosine"
+  warmup_epochs: 2
+  patience: 2           # Early stopping patience
+  gradient_clip_norm: 1.0
+  amp: true             # Automatic mixed precision for GPU speedup
+  num_workers: 0        # 0 required on Windows to avoid DataLoader deadlock
+  pin_memory: true
+  class_weights: "balanced"
+  val_subset_size: 4096 # Fast per-epoch validation; full dev/eval still run post-training
+
+# --- Random Seed ---
+seed: 42
+
+# --- Evaluation Metrics ---
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1
+    - roc_auc
+    - eer
+    - mcc
+    - confusion_matrix
+
+# --- Device ---
+device: "cuda"  # Force GPU training

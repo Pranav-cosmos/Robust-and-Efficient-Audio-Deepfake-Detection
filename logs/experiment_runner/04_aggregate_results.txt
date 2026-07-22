@@ -1,0 +1,7 @@
+============================================================
+AGGREGATING TRAINING RESULTS
+============================================================
+
+Scanning: ./results and ./checkpoints
+
+[WARNING] No training results found. Run training first.

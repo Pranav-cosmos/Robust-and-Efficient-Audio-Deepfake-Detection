@@ -1,0 +1,134 @@
+{
+  "completed_models": [
+    "random_forest",
+    "xgboost",
+    "simple_cnn",
+    "mobilenetv2",
+    "resnet18"
+  ],
+  "missing_models": [],
+  "model_families": {
+    "random_forest": "Classical ensemble",
+    "xgboost": "Gradient boosting",
+    "simple_cnn": "Lightweight CNN",
+    "mobilenetv2": "Mobile transfer CNN",
+    "resnet18": "Residual transfer CNN"
+  },
+  "rankings": {
+    "eer_low_to_high": [
+      {
+        "model": "resnet18",
+        "value": 0.053441329646116524
+      },
+      {
+        "model": "mobilenetv2",
+        "value": 0.05384092454255513
+      },
+      {
+        "model": "simple_cnn",
+        "value": 0.07994561522889876
+      },
+      {
+        "model": "xgboost",
+        "value": 0.1373939450862528
+      },
+      {
+        "model": "random_forest",
+        "value": 0.16514824207131895
+      }
+    ],
+    "f1_high_to_low": [
+      {
+        "model": "random_forest",
+        "value": 0.9489834584838104
+      },
+      {
+        "model": "resnet18",
+        "value": 0.9436104202985962
+      },
+      {
+        "model": "mobilenetv2",
+        "value": 0.9434922733658375
+      },
+      {
+        "model": "xgboost",
+        "value": 0.9407653667888083
+      },
+      {
+        "model": "simple_cnn",
+        "value": 0.7826128383721928
+      }
+    ],
+    "runtime_low_to_high": [
+      {
+        "model": "xgboost",
+        "value": 2.549990177154541
+      },
+      {
+        "model": "random_forest",
+        "value": 30.214093446731567
+      },
+      {
+        "model": "mobilenetv2",
+        "value": 1009.6671428000554
+      },
+      {
+        "model": "resnet18",
+        "value": 1041.8130011999747
+      },
+      {
+        "model": "simple_cnn",
+        "value": 1484.6055742000462
+      }
+    ],
+    "efficiency_low_eer_time_product": [
+      {
+        "model": "xgboost",
+        "eer_percent": 13.73939450862528,
+        "training_time_seconds": 2.549990177154541,
+        "eer_time_product": 0.3503532103704551
+      },
+      {
+        "model": "random_forest",
+        "eer_percent": 16.514824207131895,
+        "training_time_seconds": 30.214093446731567,
+        "eer_time_product": 4.989804418506276
+      },
+      {
+        "model": "mobilenetv2",
+        "eer_percent": 5.384092454255513,
+        "training_time_seconds": 1009.6671428000554,
+        "eer_time_product": 54.36141244859502
+      },
+      {
+        "model": "resnet18",
+        "eer_percent": 5.344132964611652,
+        "training_time_seconds": 1041.8130011999747,
+        "eer_time_product": 55.675872026737835
+      },
+      {
+        "model": "simple_cnn",
+        "eer_percent": 7.994561522889876,
+        "training_time_seconds": 1484.6055742000462,
+        "eer_time_product": 118.68770600167521
+      }
+    ]
+  },
+  "paper_observations": [
+    "ResNet18 is currently the strongest model by EER (5.34%).",
+    "XGBoost is currently the fastest completed model (2.5 seconds).",
+    "XGBoost has the best current EER-runtime trade-off among completed models.",
+    "Within classical ML, XGBoost currently gives lower EER on the same MFCC representation.",
+    "Within deep CNNs, ResNet18 currently gives the lowest EER."
+  ],
+  "paper_limitations": [
+    "Single-seed results support deterministic engineering comparison, but they should be described as fixed-seed outcomes rather than variance estimates.",
+    "Per-epoch validation uses a deterministic subset for speed; final reported metrics are generated on full available validation/evaluation splits."
+  ],
+  "recommended_reporting": [
+    "Report EER as the primary metric because the dataset is highly class-imbalanced.",
+    "Report ROC-AUC, MCC, F1, precision, and recall to show threshold-independent and threshold-dependent behavior.",
+    "Discuss runtime together with EER so the benchmark supports deployment-aware model selection.",
+    "Keep classical and deep models on their intended feature families: MFCC for tree models and log-mel spectrograms for CNNs."
+  ]
+}

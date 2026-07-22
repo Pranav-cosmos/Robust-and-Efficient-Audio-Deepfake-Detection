@@ -1,0 +1,21 @@
+{
+  "model": "xgboost",
+  "seed": 42,
+  "training_time_seconds": 0.8207542896270752,
+  "model_size_mb": 0.11392784118652344,
+  "parameters": {
+    "total_params": 5400,
+    "trainable_params": 5400
+  },
+  "validation_metrics": {
+    "accuracy": 0.826,
+    "precision": 0.8146718146718147,
+    "recall": 0.844,
+    "f1": 0.8290766208251473,
+    "mcc": 0.652422907110135,
+    "roc_auc": 0.910816,
+    "eer": 0.16400000000000034,
+    "eer_threshold": 0.5483326315879821
+  },
+  "evaluation_metrics": {}
+}
