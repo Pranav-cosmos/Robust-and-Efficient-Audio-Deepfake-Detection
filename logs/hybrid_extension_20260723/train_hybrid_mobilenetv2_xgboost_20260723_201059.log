@@ -1,0 +1,7 @@
+2026-07-23 20:10:59 | train_hybrid_mobilenetv2_xgboost | INFO | Training hybrid_mobilenetv2_xgboost on cuda with seed 42
+2026-07-23 20:21:15 | train_hybrid_mobilenetv2_xgboost | INFO | Saved embeddings: cache\embeddings\hybrid_extension_20260723\mobilenetv2\asvspoof2019_train.npz ((25380, 1280))
+2026-07-23 20:31:52 | train_hybrid_mobilenetv2_xgboost | INFO | Saved embeddings: cache\embeddings\hybrid_extension_20260723\mobilenetv2\asvspoof2019_dev.npz ((24844, 1280))
+2026-07-23 20:56:30 | train_hybrid_mobilenetv2_xgboost | INFO | Saved embeddings: cache\embeddings\hybrid_extension_20260723\mobilenetv2\asvspoof2019_eval.npz ((71237, 1280))
+2026-07-23 20:56:45 | train_hybrid_mobilenetv2_xgboost | INFO | Hybrid model saved: checkpoints\hybrid_extension_20260723\hybrid_mobilenetv2_xgboost\hybrid_mobilenetv2_xgboost_model.pkl
+2026-07-23 20:56:45 | train_hybrid_mobilenetv2_xgboost | INFO | Metrics saved: results\hybrid_extension_20260723\hybrid_mobilenetv2_xgboost\metrics.json
+2026-07-23 20:56:45 | train_hybrid_mobilenetv2_xgboost | INFO | Training completed in 6.6s

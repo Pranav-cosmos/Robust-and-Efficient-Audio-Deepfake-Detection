@@ -23,7 +23,9 @@ os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
 
 CLASSICAL_MODELS = ["random_forest", "xgboost"]
 DEEP_MODELS = ["simple_cnn", "mobilenetv2", "resnet18"]
-ALL_MODELS = CLASSICAL_MODELS + DEEP_MODELS
+HYBRID_MODELS = ["hybrid_mfcc_cnn_xgboost", "hybrid_mobilenetv2_xgboost"]
+ALL_MODELS = CLASSICAL_MODELS + DEEP_MODELS + HYBRID_MODELS
+BASELINE_MODELS = CLASSICAL_MODELS + DEEP_MODELS
 
 
 def run(cmd: list, label: str, log_dir: str) -> tuple:
@@ -100,21 +102,48 @@ def build_publish_commands(
     completed_models: list,
 ) -> list:
     paths = result_paths(project_root, artifact_tag)
+    baseline_results_dir = Path(args.baseline_results_dir)
+    if not baseline_results_dir.is_absolute():
+        baseline_results_dir = project_root / baseline_results_dir
+    results_dirs = [paths["results_dir"]]
+    publish_models = completed_models
+    if args.include_existing_results:
+        results_dirs = [baseline_results_dir, paths["results_dir"]]
+        requested = set(BASELINE_MODELS + completed_models)
+        publish_models = [model for model in ALL_MODELS if model in requested]
+
+    aggregate_cmd = [
+        args.python,
+        str(project_root / "evaluation" / "aggregate_results.py"),
+        "--config",
+        args.config,
+        "--output",
+        str(paths["all_results"]),
+        "--models",
+        *publish_models,
+    ]
+    for results_dir in results_dirs:
+        aggregate_cmd.extend(["--results_dir", str(results_dir)])
+
+    figure_cmd = [
+        args.python,
+        str(project_root / "scripts" / "generate_paper_figures.py"),
+        "--config",
+        args.config,
+        "--results",
+        str(paths["all_results"]),
+        "--output_dir",
+        str(paths["figures_dir"]),
+        "--models",
+        *publish_models,
+    ]
+    for results_dir in results_dirs:
+        figure_cmd.extend(["--scores_dir", str(results_dir)])
+
     commands = [
         (
             "aggregate_results",
-            [
-                args.python,
-                str(project_root / "evaluation" / "aggregate_results.py"),
-                "--config",
-                args.config,
-                "--results_dir",
-                str(paths["results_dir"]),
-                "--output",
-                str(paths["all_results"]),
-                "--models",
-                *completed_models,
-            ],
+            aggregate_cmd,
         ),
         (
             "generate_paper_tables",
@@ -131,18 +160,7 @@ def build_publish_commands(
         ),
         (
             "generate_paper_figures",
-            [
-                args.python,
-                str(project_root / "scripts" / "generate_paper_figures.py"),
-                "--config",
-                args.config,
-                "--results",
-                str(paths["all_results"]),
-                "--output_dir",
-                str(paths["figures_dir"]),
-                "--models",
-                *completed_models,
-            ],
+            figure_cmd,
         ),
         (
             "generate_research_inferences",
@@ -195,6 +213,14 @@ def main():
     parser.add_argument("--device", type=str, default="cuda", choices=["cuda", "auto", "cpu"])
     parser.add_argument("--models", nargs="+", choices=ALL_MODELS, default=ALL_MODELS,
                         help="Subset of retained models to train in benchmark order")
+    parser.add_argument("--run_name", type=str, default=None,
+                        help="Additive output folder name under results/checkpoints/logs/paper_figures")
+    parser.add_argument("--main_output_paths", action="store_true",
+                        help="Use legacy main output paths and allow overwriting same-named outputs")
+    parser.add_argument("--include_existing_results", action="store_true",
+                        help="Merge existing baseline results into generated comparison graphs/tables")
+    parser.add_argument("--baseline_results_dir", type=str, default="results",
+                        help="Directory containing previous baseline metrics and score files")
     parser.add_argument("--skip_features", action="store_true", help="Skip MFCC feature extraction")
     parser.add_argument("--debug", action="store_true", help="Debug mode: 2 epochs, fast subset")
     parser.add_argument("--smoke", action="store_true",
@@ -207,7 +233,13 @@ def main():
     args = parser.parse_args()
 
     project_root = Path(__file__).parent.parent
-    artifact_tag = "smoke" if args.smoke else None
+    if args.smoke:
+        artifact_tag = args.run_name or "smoke"
+    elif args.main_output_paths:
+        artifact_tag = None
+    else:
+        artifact_tag = args.run_name or time.strftime("run_%Y%m%d_%H%M%S")
+
     logs_dir = str(project_root / "logs" / (artifact_tag or "") / "experiment_runner")
     selected_models = [m for m in ALL_MODELS if m in set(args.models)]
 
@@ -244,7 +276,12 @@ def main():
         print("[SKIP] Feature extraction")
 
     for model in selected_models:
-        prefix = "02" if model in CLASSICAL_MODELS else "03"
+        if model in CLASSICAL_MODELS:
+            prefix = "02"
+        elif model in DEEP_MODELS:
+            prefix = "03"
+        else:
+            prefix = "04"
         label = f"{prefix}_train_{model}"
 
         if model in CLASSICAL_MODELS:
@@ -270,7 +307,7 @@ def main():
                     "--max_val_samples", "500",
                     "--max_eval_samples", "500",
                 ])
-        else:
+        elif model in DEEP_MODELS:
             cmd = [
                 args.python,
                 str(project_root / "training" / "train_deep.py"),
@@ -282,6 +319,30 @@ def main():
                 args.config,
                 "--device",
                 args.device,
+            ]
+            if args.debug or args.smoke:
+                cmd.append("--debug")
+            if artifact_tag:
+                cmd.extend(["--artifact_tag", artifact_tag])
+            if args.smoke:
+                cmd.extend([
+                    "--max_train_samples", "128",
+                    "--max_val_samples", "64",
+                    "--max_eval_samples", "64",
+                ])
+        else:
+            cmd = [
+                args.python,
+                str(project_root / "training" / "train_hybrid.py"),
+                "--model",
+                model,
+                "--seed",
+                str(args.seed),
+                "--config",
+                args.config,
+                "--device",
+                args.device,
+                "--use_gpu",
             ]
             if args.debug or args.smoke:
                 cmd.append("--debug")

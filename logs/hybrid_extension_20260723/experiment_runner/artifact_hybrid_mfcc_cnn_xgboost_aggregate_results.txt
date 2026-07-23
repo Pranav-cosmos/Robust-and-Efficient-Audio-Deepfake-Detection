@@ -1,0 +1,28 @@
+============================================================
+AGGREGATING TRAINING RESULTS
+============================================================
+
+Scanning results: ['C:\\Users\\Hp\\VSCODE\\codes and scripts\\results', 'C:\\Users\\Hp\\VSCODE\\codes and scripts\\results\\hybrid_extension_20260723']
+Scanning checkpoints fallback: ./checkpoints
+  [OK] Found results for hybrid_mfcc_cnn_xgboost from C:\Users\Hp\VSCODE\codes and scripts\results\hybrid_extension_20260723\hybrid_mfcc_cnn_xgboost\metrics.json
+  [OK] Found results for hybrid_mfcc_cnn_xgboost from C:\Users\Hp\VSCODE\codes and scripts\results\hybrid_smoke_test\hybrid_mfcc_cnn_xgboost\metrics.json
+  [OK] Found results for mobilenetv2 from C:\Users\Hp\VSCODE\codes and scripts\results\mobilenetv2\metrics.json
+  [OK] Found results for random_forest from C:\Users\Hp\VSCODE\codes and scripts\results\random_forest\metrics.json
+  [OK] Found results for resnet18 from C:\Users\Hp\VSCODE\codes and scripts\results\resnet18\metrics.json
+  [OK] Found results for simple_cnn from C:\Users\Hp\VSCODE\codes and scripts\results\simple_cnn\metrics.json
+  [OK] Found results for xgboost from C:\Users\Hp\VSCODE\codes and scripts\results\xgboost\metrics.json
+  [OK] Found results for hybrid_mfcc_cnn_xgboost from C:\Users\Hp\VSCODE\codes and scripts\results\hybrid_extension_20260723\hybrid_mfcc_cnn_xgboost\metrics.json
+
+Found results for 6 model(s): ['hybrid_mfcc_cnn_xgboost', 'mobilenetv2', 'random_forest', 'resnet18', 'simple_cnn', 'xgboost']
+
+[SAVED] C:\Users\Hp\VSCODE\codes and scripts\results\hybrid_extension_20260723\all_results.json
+
+Summary:
+  Model                        EER (%)    Accuracy (%)     F1-Score     Time (s)
+  ------------------------------------------------------------------------------
+  hybrid_mfcc_cnn_xgboost         8.92%          64.31%       0.7517         3.5s
+  mobilenetv2                     5.38%          90.40%       0.9435      1009.7s
+  random_forest                  16.51%          90.74%       0.9490        30.2s
+  resnet18                        5.34%          90.42%       0.9436      1041.8s
+  simple_cnn                      7.99%          67.97%       0.7826      1484.6s
+  xgboost                        13.74%          89.72%       0.9408         2.5s

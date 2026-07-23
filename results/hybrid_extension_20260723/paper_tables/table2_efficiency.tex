@@ -1,0 +1,29 @@
+\begin{table}[ht]
+  \centering
+  \caption{Computational efficiency breakdown including parameter counts, disk storage size, and training runtime on an NVIDIA GPU environment.}
+  \label{tab:efficiency}
+  \begin{tabular}{lrrrr}
+    \toprule
+    \textbf{Model} & \textbf{Parameters} & \textbf{Size (MB)} & \textbf{Train Time (s)} & \textbf{GPU Acceleration} \\
+    \midrule
+    \multicolumn{5}{l}{\textit{Classical Ensemble}} \\
+    Random Forest & 178,942 & 13.71 & 30.2 & CPU Multi-thread \\
+    \midrule
+    \multicolumn{5}{l}{\textit{Gradient Boosting}} \\
+    XGBoost & 14,200 & 0.34 & 2.5 & CUDA Enabled \\
+    \midrule
+    \multicolumn{5}{l}{\textit{Lightweight CNN}} \\
+    Simple CNN & 114,402 & --- & 1484.6 & CUDA Enabled \\
+    \midrule
+    \multicolumn{5}{l}{\textit{Efficient Mobile CNN}} \\
+    MobileNetV2 & 2,225,858 & --- & 1009.7 & CUDA Enabled \\
+    \midrule
+    \multicolumn{5}{l}{\textit{Residual CNN}} \\
+    ResNet-18 & 11,171,266 & --- & 1041.8 & CUDA Enabled \\
+    \midrule
+    \multicolumn{5}{l}{\textit{Hybrid Learning}} \\
+    MFCC+SimpleCNN-XGBoost & 8,600 & 0.09 & 3.5 & CUDA Enabled \\
+    MobileNetV2-XGBoost & 11,900 & 0.24 & 6.6 & CUDA Enabled \\
+    \bottomrule
+  \end{tabular}
+\end{table}

@@ -10,14 +10,25 @@ import math
 from pathlib import Path
 
 
-TABLE_ORDER = ["random_forest", "xgboost", "simple_cnn", "mobilenetv2", "resnet18"]
+TABLE_ORDER = [
+    "random_forest",
+    "xgboost",
+    "simple_cnn",
+    "mobilenetv2",
+    "resnet18",
+    "hybrid_mfcc_cnn_xgboost",
+    "hybrid_mobilenetv2_xgboost",
+]
 DEEP_CNN_MODELS = ["simple_cnn", "mobilenetv2", "resnet18"]
+HYBRID_MODELS = ["hybrid_mfcc_cnn_xgboost", "hybrid_mobilenetv2_xgboost"]
 DISPLAY = {
     "random_forest": "Random Forest",
     "xgboost": "XGBoost",
     "simple_cnn": "SimpleCNN",
     "mobilenetv2": "MobileNetV2",
     "resnet18": "ResNet18",
+    "hybrid_mfcc_cnn_xgboost": "MFCC+SimpleCNN-XGBoost",
+    "hybrid_mobilenetv2_xgboost": "MobileNetV2-XGBoost",
 }
 FAMILY = {
     "random_forest": "Classical ensemble",
@@ -25,6 +36,8 @@ FAMILY = {
     "simple_cnn": "Lightweight CNN",
     "mobilenetv2": "Mobile transfer CNN",
     "resnet18": "Residual transfer CNN",
+    "hybrid_mfcc_cnn_xgboost": "Hybrid CNN embedding + boosting",
+    "hybrid_mobilenetv2_xgboost": "Hybrid transfer embedding + boosting",
 }
 
 
@@ -114,6 +127,23 @@ def build_inferences(aggregated: dict) -> dict:
         observations.append(
             f"Within deep CNNs, {DISPLAY[deep_best['model']]} currently gives the lowest EER."
         )
+    completed_hybrids = [m for m in HYBRID_MODELS if m in completed]
+    if completed_hybrids:
+        hybrid_best = rank_models({m: aggregated[m] for m in completed_hybrids}, "eer", reverse=False)[0]
+        observations.append(
+            f"Among hybrid models, {DISPLAY[hybrid_best['model']]} currently gives the lowest EER, "
+            "summarizing whether frozen neural embeddings improve the boosted classifier setting."
+        )
+    if "xgboost" in completed and completed_hybrids:
+        xgb_eer = metric(aggregated["xgboost"], "eer")
+        hybrid_rank = rank_models({m: aggregated[m] for m in completed_hybrids}, "eer", reverse=False)
+        if xgb_eer is not None and hybrid_rank:
+            best_hybrid = hybrid_rank[0]
+            delta = (xgb_eer - best_hybrid["value"]) * 100
+            direction = "improves over" if delta > 0 else "does not yet improve over"
+            observations.append(
+                f"The best hybrid model {direction} plain MFCC-XGBoost by {abs(delta):.2f} EER percentage points."
+            )
 
     limitations = []
     if missing:
@@ -144,6 +174,7 @@ def build_inferences(aggregated: dict) -> dict:
             "Report ROC-AUC, MCC, F1, precision, and recall to show threshold-independent and threshold-dependent behavior.",
             "Discuss runtime together with EER so the benchmark supports deployment-aware model selection.",
             "Keep classical and deep models on their intended feature families: MFCC for tree models and log-mel spectrograms for CNNs.",
+            "Use the hybrid rows to discuss whether fixed neural embeddings add complementary information to MFCC-based boosting.",
         ],
     }
 

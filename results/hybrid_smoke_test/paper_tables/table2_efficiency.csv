@@ -1,0 +1,8 @@
+Model,Parameters,Size (MB),Train Time (s),GPU Acceleration
+Random Forest,"178,942",13.71,30.2,CPU Multi-thread
+XGBoost,"14,200",0.34,2.5,CUDA Enabled
+Simple CNN,"114,402",---,1484.6,CUDA Enabled
+MobileNetV2,"2,225,858",---,1009.7,CUDA Enabled
+ResNet-18,"11,171,266",---,1041.8,CUDA Enabled
+MFCC+SimpleCNN-XGBoost,"4,300",0.05,0.4,CUDA Enabled
+MobileNetV2-XGBoost,"6,800",0.07,0.5,CUDA Enabled

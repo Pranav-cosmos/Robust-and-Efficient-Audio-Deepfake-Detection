@@ -1,0 +1,177 @@
+{
+  "completed_models": [
+    "random_forest",
+    "xgboost",
+    "simple_cnn",
+    "mobilenetv2",
+    "resnet18",
+    "hybrid_mfcc_cnn_xgboost",
+    "hybrid_mobilenetv2_xgboost"
+  ],
+  "missing_models": [],
+  "model_families": {
+    "random_forest": "Classical ensemble",
+    "xgboost": "Gradient boosting",
+    "simple_cnn": "Lightweight CNN",
+    "mobilenetv2": "Mobile transfer CNN",
+    "resnet18": "Residual transfer CNN",
+    "hybrid_mfcc_cnn_xgboost": "Hybrid CNN embedding + boosting",
+    "hybrid_mobilenetv2_xgboost": "Hybrid transfer embedding + boosting"
+  },
+  "rankings": {
+    "eer_low_to_high": [
+      {
+        "model": "resnet18",
+        "value": 0.053441329646116524
+      },
+      {
+        "model": "mobilenetv2",
+        "value": 0.05384092454255513
+      },
+      {
+        "model": "simple_cnn",
+        "value": 0.07994561522889876
+      },
+      {
+        "model": "xgboost",
+        "value": 0.1373939450862528
+      },
+      {
+        "model": "random_forest",
+        "value": 0.16514824207131895
+      },
+      {
+        "model": "hybrid_mobilenetv2_xgboost",
+        "value": 0.18749999999924474
+      },
+      {
+        "model": "hybrid_mfcc_cnn_xgboost",
+        "value": 0.2820512820513274
+      }
+    ],
+    "f1_high_to_low": [
+      {
+        "model": "random_forest",
+        "value": 0.9489834584838104
+      },
+      {
+        "model": "resnet18",
+        "value": 0.9436104202985962
+      },
+      {
+        "model": "mobilenetv2",
+        "value": 0.9434922733658375
+      },
+      {
+        "model": "xgboost",
+        "value": 0.9407653667888083
+      },
+      {
+        "model": "hybrid_mobilenetv2_xgboost",
+        "value": 0.8181818181818182
+      },
+      {
+        "model": "simple_cnn",
+        "value": 0.7826128383721928
+      },
+      {
+        "model": "hybrid_mfcc_cnn_xgboost",
+        "value": 0.6938775510204082
+      }
+    ],
+    "runtime_low_to_high": [
+      {
+        "model": "hybrid_mfcc_cnn_xgboost",
+        "value": 0.4029974937438965
+      },
+      {
+        "model": "hybrid_mobilenetv2_xgboost",
+        "value": 0.48155808448791504
+      },
+      {
+        "model": "xgboost",
+        "value": 2.549990177154541
+      },
+      {
+        "model": "random_forest",
+        "value": 30.214093446731567
+      },
+      {
+        "model": "mobilenetv2",
+        "value": 1009.6671428000554
+      },
+      {
+        "model": "resnet18",
+        "value": 1041.8130011999747
+      },
+      {
+        "model": "simple_cnn",
+        "value": 1484.6055742000462
+      }
+    ],
+    "efficiency_low_eer_time_product": [
+      {
+        "model": "hybrid_mobilenetv2_xgboost",
+        "eer_percent": 18.749999999924473,
+        "training_time_seconds": 0.48155808448791504,
+        "eer_time_product": 0.09029214084112037
+      },
+      {
+        "model": "hybrid_mfcc_cnn_xgboost",
+        "eer_percent": 28.20512820513274,
+        "training_time_seconds": 0.4029974937438965,
+        "eer_time_product": 0.1136659597739378
+      },
+      {
+        "model": "xgboost",
+        "eer_percent": 13.73939450862528,
+        "training_time_seconds": 2.549990177154541,
+        "eer_time_product": 0.3503532103704551
+      },
+      {
+        "model": "random_forest",
+        "eer_percent": 16.514824207131895,
+        "training_time_seconds": 30.214093446731567,
+        "eer_time_product": 4.989804418506276
+      },
+      {
+        "model": "mobilenetv2",
+        "eer_percent": 5.384092454255513,
+        "training_time_seconds": 1009.6671428000554,
+        "eer_time_product": 54.36141244859502
+      },
+      {
+        "model": "resnet18",
+        "eer_percent": 5.344132964611652,
+        "training_time_seconds": 1041.8130011999747,
+        "eer_time_product": 55.675872026737835
+      },
+      {
+        "model": "simple_cnn",
+        "eer_percent": 7.994561522889876,
+        "training_time_seconds": 1484.6055742000462,
+        "eer_time_product": 118.68770600167521
+      }
+    ]
+  },
+  "paper_observations": [
+    "ResNet18 is currently the strongest model by EER (5.34%).",
+    "MFCC+SimpleCNN-XGBoost is currently the fastest completed model (0.4 seconds).",
+    "MobileNetV2-XGBoost has the best current EER-runtime trade-off among completed models.",
+    "Within classical ML, XGBoost currently gives lower EER on the same MFCC representation.",
+    "Within deep CNNs, ResNet18 currently gives the lowest EER.",
+    "Among hybrid models, MobileNetV2-XGBoost currently gives the lowest EER, summarizing whether frozen neural embeddings improve the boosted classifier setting.",
+    "The best hybrid model does not yet improve over plain MFCC-XGBoost by 5.01 EER percentage points."
+  ],
+  "paper_limitations": [
+    "Single-seed results support deterministic engineering comparison, but they should be described as fixed-seed outcomes rather than variance estimates.",
+    "Per-epoch validation uses a deterministic subset for speed; final reported metrics are generated on full available validation/evaluation splits."
+  ],
+  "recommended_reporting": [
+    "Report EER as the primary metric because the dataset is highly class-imbalanced.",
+    "Report ROC-AUC, MCC, F1, precision, and recall to show threshold-independent and threshold-dependent behavior.",
+    "Discuss runtime together with EER so the benchmark supports deployment-aware model selection.",
+    "Keep classical and deep models on their intended feature families: MFCC for tree models and log-mel spectrograms for CNNs.",
+    "Use the hybrid rows to discuss whether fixed neural embeddings add complementary information to MFCC-based boosting."
+  ]
+}

@@ -17,27 +17,37 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from utils.config import load_config
 
-RETAINED_MODELS = ["random_forest", "xgboost", "simple_cnn", "mobilenetv2", "resnet18"]
+RETAINED_MODELS = [
+    "random_forest",
+    "xgboost",
+    "simple_cnn",
+    "mobilenetv2",
+    "resnet18",
+    "hybrid_mfcc_cnn_xgboost",
+    "hybrid_mobilenetv2_xgboost",
+]
 
 
-def scan_results(results_dir: str, checkpoints_dir: str, allowed_models: list | None = None) -> dict:
+def scan_results(results_dirs: list[str], checkpoints_dir: str, allowed_models: list | None = None) -> dict:
     """Scan metrics.json and training_info.json files."""
     results = {}
     allowed = set(allowed_models) if allowed_models else set(RETAINED_MODELS)
 
-    # Scan results_dir first
-    r_root = Path(results_dir)
-    if r_root.exists():
-        for metrics_file in sorted(r_root.rglob("metrics.json")):
-            try:
-                with open(metrics_file) as f:
-                    data = json.load(f)
-                model_name = data.get("model", metrics_file.parent.name)
-                if model_name in allowed:
-                    results[model_name] = data
-                    print(f"  [OK] Found results for {model_name} from {metrics_file}")
-            except Exception as e:
-                print(f"  [WARN] Could not parse {metrics_file}: {e}")
+    # Scan result directories in order. Later directories intentionally replace
+    # earlier ones for the same model so additive runs can refresh one model.
+    for results_dir in results_dirs:
+        r_root = Path(results_dir)
+        if r_root.exists():
+            for metrics_file in sorted(r_root.rglob("metrics.json")):
+                try:
+                    with open(metrics_file) as f:
+                        data = json.load(f)
+                    model_name = data.get("model", metrics_file.parent.name)
+                    if model_name in allowed:
+                        results[model_name] = data
+                        print(f"  [OK] Found results for {model_name} from {metrics_file}")
+                except Exception as e:
+                    print(f"  [WARN] Could not parse {metrics_file}: {e}")
 
     # Fallback to checkpoints_dir if missing
     c_root = Path(checkpoints_dir)
@@ -62,7 +72,8 @@ def scan_results(results_dir: str, checkpoints_dir: str, allowed_models: list | 
 def main():
     parser = argparse.ArgumentParser(description="Aggregate training results for paper")
     parser.add_argument("--config", type=str, default="configs/base_config.yaml")
-    parser.add_argument("--results_dir", type=str, default=None)
+    parser.add_argument("--results_dir", type=str, action="append", default=None,
+                        help="Result directory to scan. Can be passed multiple times; later directories win.")
     parser.add_argument("--output", type=str, default=None)
     parser.add_argument("--models", nargs="+", choices=RETAINED_MODELS, default=None,
                         help="Only aggregate this completed model subset")
@@ -71,16 +82,17 @@ def main():
     config = load_config(args.config)
     paths = config.get("paths", {})
 
-    results_dir = args.results_dir or paths.get("results", "./results")
+    results_dirs = args.results_dir or [paths.get("results", "./results")]
     checkpoints_dir = paths.get("checkpoints", "./checkpoints")
-    output_path = args.output or os.path.join(results_dir, "all_results.json")
+    output_path = args.output or os.path.join(results_dirs[-1], "all_results.json")
 
     print("=" * 60)
     print("AGGREGATING TRAINING RESULTS")
     print("=" * 60)
-    print(f"\nScanning: {results_dir} and {checkpoints_dir}")
+    print(f"\nScanning results: {results_dirs}")
+    print(f"Scanning checkpoints fallback: {checkpoints_dir}")
 
-    models_data = scan_results(results_dir, checkpoints_dir, args.models)
+    models_data = scan_results(results_dirs, checkpoints_dir, args.models)
 
     if not models_data:
         print("\n[WARNING] No training results found. Run training first.")

@@ -1,0 +1,32 @@
+# Hybrid MFCC + SimpleCNN Embeddings + XGBoost Configuration
+model:
+  name: "hybrid_mfcc_cnn_xgboost"
+  type: "hybrid"
+
+  feature_extractor:
+    backbone: "simple_cnn"
+    checkpoint_model: "simple_cnn"
+    embedding_dim: 128
+    freeze: true
+    include_mfcc: true
+
+  params:
+    n_estimators: 120
+    max_depth: 5
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    min_child_weight: 5
+    gamma: 0.1
+    reg_alpha: 0.1
+    reg_lambda: 1.0
+    scale_pos_weight: "auto"
+    eval_metric: "logloss"
+    tree_method: "hist"
+    device: "cpu"
+    early_stopping_rounds: 20
+    random_state: 42
+
+  input:
+    feature_type: "mfcc_plus_simplecnn_embedding"
+    feature_dim: 368

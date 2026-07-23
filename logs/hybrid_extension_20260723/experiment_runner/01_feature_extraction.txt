@@ -1,0 +1,7 @@
+2026-07-23 19:25:02 | extract_features | INFO | ASVspoof2019 train: 25380 samples
+2026-07-23 19:25:02 | extract_features | INFO | MFCC features already cached: ./cache/features\mfcc\asvspoof2019_train.npz
+2026-07-23 19:25:02 | extract_features | INFO | ASVspoof2019 dev: 24844 samples
+2026-07-23 19:25:02 | extract_features | INFO | MFCC features already cached: ./cache/features\mfcc\asvspoof2019_dev.npz
+2026-07-23 19:25:03 | extract_features | INFO | ASVspoof2019 eval: 71237 samples
+2026-07-23 19:25:03 | extract_features | INFO | MFCC features already cached: ./cache/features\mfcc\asvspoof2019_eval.npz
+2026-07-23 19:25:03 | extract_features | INFO | Feature extraction complete!

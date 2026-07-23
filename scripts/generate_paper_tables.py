@@ -22,13 +22,15 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from utils.config import load_config
 
-# Human-readable display names for the 5 retained benchmark models
+# Human-readable display names for the retained benchmark models
 MODEL_DISPLAY_NAMES = {
     "random_forest": "Random Forest",
     "xgboost":       "XGBoost",
     "simple_cnn":    "Simple CNN",
     "mobilenetv2":   "MobileNetV2",
     "resnet18":      "ResNet-18",
+    "hybrid_mfcc_cnn_xgboost": "MFCC+SimpleCNN-XGBoost",
+    "hybrid_mobilenetv2_xgboost": "MobileNetV2-XGBoost",
 }
 
 MODEL_CATEGORIES = {
@@ -37,9 +39,19 @@ MODEL_CATEGORIES = {
     "simple_cnn":    "Lightweight CNN",
     "mobilenetv2":   "Efficient Mobile CNN",
     "resnet18":      "Residual CNN",
+    "hybrid_mfcc_cnn_xgboost": "Hybrid Learning",
+    "hybrid_mobilenetv2_xgboost": "Hybrid Learning",
 }
 
-TABLE_ORDER = ["random_forest", "xgboost", "simple_cnn", "mobilenetv2", "resnet18"]
+TABLE_ORDER = [
+    "random_forest",
+    "xgboost",
+    "simple_cnn",
+    "mobilenetv2",
+    "resnet18",
+    "hybrid_mfcc_cnn_xgboost",
+    "hybrid_mobilenetv2_xgboost",
+]
 
 
 def write_latex_table(rows: list, headers: list, caption: str, label: str, output_path: str) -> None:

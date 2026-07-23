@@ -1,0 +1,8 @@
+2026-07-23 19:25:22 | train_hybrid_mfcc_cnn_xgboost | INFO | Training hybrid_mfcc_cnn_xgboost on cuda with seed 42
+2026-07-23 19:25:27 | train_hybrid_mfcc_cnn_xgboost | INFO | Loaded feature extractor checkpoint: C:\Users\Hp\VSCODE\codes and scripts\checkpoints\simple_cnn\best.pt
+2026-07-23 19:36:06 | train_hybrid_mfcc_cnn_xgboost | INFO | Saved embeddings: cache\embeddings\hybrid_extension_20260723\simplecnn\asvspoof2019_train.npz ((25380, 128))
+2026-07-23 19:43:13 | train_hybrid_mfcc_cnn_xgboost | INFO | Saved embeddings: cache\embeddings\hybrid_extension_20260723\simplecnn\asvspoof2019_dev.npz ((24844, 128))
+2026-07-23 20:10:24 | train_hybrid_mfcc_cnn_xgboost | INFO | Saved embeddings: cache\embeddings\hybrid_extension_20260723\simplecnn\asvspoof2019_eval.npz ((71237, 128))
+2026-07-23 20:10:34 | train_hybrid_mfcc_cnn_xgboost | INFO | Hybrid model saved: checkpoints\hybrid_extension_20260723\hybrid_mfcc_cnn_xgboost\hybrid_mfcc_cnn_xgboost_model.pkl
+2026-07-23 20:10:34 | train_hybrid_mfcc_cnn_xgboost | INFO | Metrics saved: results\hybrid_extension_20260723\hybrid_mfcc_cnn_xgboost\metrics.json
+2026-07-23 20:10:34 | train_hybrid_mfcc_cnn_xgboost | INFO | Training completed in 3.5s

@@ -1,0 +1,32 @@
+{
+  "model": "hybrid_mobilenetv2_xgboost",
+  "seed": 42,
+  "training_time_seconds": 6.573245525360107,
+  "model_size_mb": 0.2420511245727539,
+  "parameters": {
+    "total_params": 11900,
+    "trainable_params": 11900
+  },
+  "embedding_dim": 1280,
+  "validation_metrics": {
+    "accuracy": 0.9604733537272581,
+    "precision": 0.9867543619256417,
+    "recall": 0.9689630426982418,
+    "f1": 0.9777777777777777,
+    "mcc": 0.8020123472130553,
+    "roc_auc": 0.9865718851090987,
+    "eer": 0.05690737833698507,
+    "eer_threshold": 0.6848446130750278
+  },
+  "evaluation_metrics": {
+    "accuracy": 0.9198029114083973,
+    "precision": 0.9875287057679736,
+    "recall": 0.9222159606774991,
+    "f1": 0.9537554942164013,
+    "mcc": 0.6771278107033507,
+    "roc_auc": 0.9721771005774563,
+    "eer": 0.08736420274881818,
+    "eer_threshold": 0.554739913962804
+  },
+  "reported_split": "eval"
+}

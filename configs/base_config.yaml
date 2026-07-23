@@ -10,6 +10,7 @@ paths:
   asvspoof2021_la_root: "./data/ASVspoof2021_LA"
   asvspoof2021_df_root: "./data/ASVspoof2021_DF"
   feature_cache: "./cache/features"
+  embedding_cache: "./cache/embeddings"
   checkpoints: "./checkpoints"
   logs: "./logs"
   results: "./results"

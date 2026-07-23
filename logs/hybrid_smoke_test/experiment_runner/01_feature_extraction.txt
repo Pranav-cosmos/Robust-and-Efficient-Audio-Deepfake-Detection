@@ -1,0 +1,28 @@
+2026-07-23 19:18:52 | extract_features | INFO | ASVspoof2019 train: 25380 samples
+
+MFCC asvspoof2019/train:   0%|          | 0/4 [00:00<?, ?it/s]
+MFCC asvspoof2019/train:  25%|██▌       | 1/4 [00:04<00:14,  4.86s/it]
+MFCC asvspoof2019/train:  50%|█████     | 2/4 [00:07<00:06,  3.50s/it]
+MFCC asvspoof2019/train:  75%|███████▌  | 3/4 [00:10<00:03,  3.21s/it]
+MFCC asvspoof2019/train: 100%|██████████| 4/4 [00:12<00:00,  2.97s/it]
+MFCC asvspoof2019/train: 100%|██████████| 4/4 [00:12<00:00,  3.22s/it]
+2026-07-23 19:19:06 | extract_features | INFO | Debug feature extraction done: ((500, 240))
+2026-07-23 19:19:06 | extract_features | INFO | ASVspoof2019 dev: 24844 samples
+
+MFCC asvspoof2019/dev:   0%|          | 0/4 [00:00<?, ?it/s]
+MFCC asvspoof2019/dev:  25%|██▌       | 1/4 [00:02<00:08,  2.92s/it]
+MFCC asvspoof2019/dev:  50%|█████     | 2/4 [00:05<00:05,  2.89s/it]
+MFCC asvspoof2019/dev:  75%|███████▌  | 3/4 [00:09<00:03,  3.05s/it]
+MFCC asvspoof2019/dev: 100%|██████████| 4/4 [00:11<00:00,  2.93s/it]
+MFCC asvspoof2019/dev: 100%|██████████| 4/4 [00:11<00:00,  2.94s/it]
+2026-07-23 19:19:18 | extract_features | INFO | Debug feature extraction done: ((500, 240))
+2026-07-23 19:19:19 | extract_features | INFO | ASVspoof2019 eval: 71237 samples
+
+MFCC asvspoof2019/eval:   0%|          | 0/4 [00:00<?, ?it/s]
+MFCC asvspoof2019/eval:  25%|██▌       | 1/4 [00:02<00:08,  2.83s/it]
+MFCC asvspoof2019/eval:  50%|█████     | 2/4 [00:05<00:05,  2.80s/it]
+MFCC asvspoof2019/eval:  75%|███████▌  | 3/4 [00:08<00:02,  2.89s/it]
+MFCC asvspoof2019/eval: 100%|██████████| 4/4 [00:11<00:00,  2.81s/it]
+MFCC asvspoof2019/eval: 100%|██████████| 4/4 [00:11<00:00,  2.83s/it]
+2026-07-23 19:19:30 | extract_features | INFO | Debug feature extraction done: ((500, 240))
+2026-07-23 19:19:30 | extract_features | INFO | Feature extraction complete!

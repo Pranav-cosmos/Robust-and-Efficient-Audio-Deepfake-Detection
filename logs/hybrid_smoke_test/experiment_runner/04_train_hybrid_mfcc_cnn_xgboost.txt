@@ -1,0 +1,35 @@
+2026-07-23 19:19:44 | train_hybrid_mfcc_cnn_xgboost | INFO | Training hybrid_mfcc_cnn_xgboost on cuda with seed 42
+2026-07-23 19:19:46 | train_hybrid_mfcc_cnn_xgboost | INFO | Loaded feature extractor checkpoint: C:\Users\Hp\VSCODE\codes and scripts\checkpoints\simple_cnn\best.pt
+
+Embeddings asvspoof2019_train_128_seed42:   0%|          | 0/8 [00:00<?, ?it/s]
+Embeddings asvspoof2019_train_128_seed42:  12%|█▎        | 1/8 [00:00<00:06,  1.03it/s]
+Embeddings asvspoof2019_train_128_seed42:  25%|██▌       | 2/8 [00:01<00:03,  1.66it/s]
+Embeddings asvspoof2019_train_128_seed42:  38%|███▊      | 3/8 [00:01<00:02,  2.05it/s]
+Embeddings asvspoof2019_train_128_seed42:  50%|█████     | 4/8 [00:02<00:01,  2.31it/s]
+Embeddings asvspoof2019_train_128_seed42:  62%|██████▎   | 5/8 [00:02<00:01,  2.49it/s]
+Embeddings asvspoof2019_train_128_seed42:  75%|███████▌  | 6/8 [00:02<00:00,  2.57it/s]
+Embeddings asvspoof2019_train_128_seed42:  88%|████████▊ | 7/8 [00:03<00:00,  2.72it/s]
+Embeddings asvspoof2019_train_128_seed42: 100%|██████████| 8/8 [00:03<00:00,  2.78it/s]
+                                                                                       
+2026-07-23 19:19:50 | train_hybrid_mfcc_cnn_xgboost | INFO | Saved embeddings: cache\embeddings\hybrid_smoke_test\simplecnn\debug\asvspoof2019_train_128_seed42.npz ((128, 128))
+
+Embeddings asvspoof2019_dev_64_seed42:   0%|          | 0/4 [00:00<?, ?it/s]
+Embeddings asvspoof2019_dev_64_seed42:  25%|██▌       | 1/4 [00:00<00:00,  4.57it/s]
+Embeddings asvspoof2019_dev_64_seed42:  50%|█████     | 2/4 [00:00<00:00,  3.70it/s]
+Embeddings asvspoof2019_dev_64_seed42:  75%|███████▌  | 3/4 [00:00<00:00,  3.35it/s]
+Embeddings asvspoof2019_dev_64_seed42: 100%|██████████| 4/4 [00:01<00:00,  3.18it/s]
+                                                                                    
+2026-07-23 19:19:52 | train_hybrid_mfcc_cnn_xgboost | INFO | Saved embeddings: cache\embeddings\hybrid_smoke_test\simplecnn\debug\asvspoof2019_dev_64_seed42.npz ((64, 128))
+
+Embeddings asvspoof2019_eval_64_seed42:   0%|          | 0/4 [00:00<?, ?it/s]
+Embeddings asvspoof2019_eval_64_seed42:  25%|██▌       | 1/4 [00:00<00:01,  2.83it/s]
+Embeddings asvspoof2019_eval_64_seed42:  50%|█████     | 2/4 [00:00<00:00,  2.72it/s]
+Embeddings asvspoof2019_eval_64_seed42:  75%|███████▌  | 3/4 [00:01<00:00,  2.93it/s]
+Embeddings asvspoof2019_eval_64_seed42: 100%|██████████| 4/4 [00:01<00:00,  2.97it/s]
+                                                                                     
+2026-07-23 19:19:53 | train_hybrid_mfcc_cnn_xgboost | INFO | Saved embeddings: cache\embeddings\hybrid_smoke_test\simplecnn\debug\asvspoof2019_eval_64_seed42.npz ((64, 128))
+C:\Users\Hp\anaconda3\Lib\site-packages\scipy\interpolate\_interpolate.py:500: RuntimeWarning: invalid value encountered in multiply
+  y_new = slope*(x_new - x_lo)[:, None] + y_lo
+2026-07-23 19:19:55 | train_hybrid_mfcc_cnn_xgboost | INFO | Hybrid model saved: checkpoints\hybrid_smoke_test\hybrid_mfcc_cnn_xgboost\hybrid_mfcc_cnn_xgboost_model.pkl
+2026-07-23 19:19:55 | train_hybrid_mfcc_cnn_xgboost | INFO | Metrics saved: results\hybrid_smoke_test\hybrid_mfcc_cnn_xgboost\metrics.json
+2026-07-23 19:19:55 | train_hybrid_mfcc_cnn_xgboost | INFO | Training completed in 0.4s

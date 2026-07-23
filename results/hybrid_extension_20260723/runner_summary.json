@@ -1,0 +1,57 @@
+{
+  "config": {
+    "config": "configs/base_config.yaml",
+    "seed": 42,
+    "device": "auto",
+    "models": [
+      "hybrid_mfcc_cnn_xgboost",
+      "hybrid_mobilenetv2_xgboost"
+    ],
+    "run_name": "hybrid_extension_20260723",
+    "main_output_paths": false,
+    "include_existing_results": true,
+    "baseline_results_dir": "results",
+    "skip_features": false,
+    "debug": false,
+    "smoke": false,
+    "continue_on_error": false,
+    "no_incremental_artifacts": false,
+    "python": "C:\\Users\\Hp\\anaconda3\\python.exe"
+  },
+  "selected_models": [
+    "hybrid_mfcc_cnn_xgboost",
+    "hybrid_mobilenetv2_xgboost"
+  ],
+  "results": {
+    "feature_extraction": {
+      "success": true,
+      "time_s": 8.95772933959961
+    },
+    "04_train_hybrid_mfcc_cnn_xgboost": {
+      "success": true,
+      "time_s": 2732.2571969032288
+    },
+    "artifacts_after_hybrid_mfcc_cnn_xgboost": {
+      "success": true,
+      "time_s": 11.295464754104614
+    },
+    "04_train_hybrid_mobilenetv2_xgboost": {
+      "success": true,
+      "time_s": 2759.359137773514
+    },
+    "artifacts_after_hybrid_mobilenetv2_xgboost": {
+      "success": true,
+      "time_s": 6.703577280044556
+    },
+    "final_artifacts": {
+      "success": true,
+      "time_s": 5.21177339553833
+    }
+  },
+  "completed_models": [
+    "hybrid_mfcc_cnn_xgboost",
+    "hybrid_mobilenetv2_xgboost"
+  ],
+  "failed_models": [],
+  "total_time_seconds": 5523.836305856705
+}

@@ -1,0 +1,29 @@
+\begin{table}[ht]
+  \centering
+  \caption{Comparative evaluation of deepfake detection models on ASVspoof 2019 LA evaluation set. EER (\%) lower is better; all other metrics higher is better.}
+  \label{tab:performance}
+  \begin{tabular}{lrrrrr}
+    \toprule
+    \textbf{Model} & \textbf{EER (%)} & \textbf{Accuracy (%)} & \textbf{F1 Score} & \textbf{AUC-ROC} & \textbf{MCC} \\
+    \midrule
+    \multicolumn{6}{l}{\textit{Classical Ensemble}} \\
+    Random Forest & 16.51 & 90.74 & 0.9490 & 0.9123 & 0.4524 \\
+    \midrule
+    \multicolumn{6}{l}{\textit{Gradient Boosting}} \\
+    XGBoost & 13.74 & 89.72 & 0.9408 & 0.9381 & 0.5739 \\
+    \midrule
+    \multicolumn{6}{l}{\textit{Lightweight CNN}} \\
+    Simple CNN & 7.99 & 67.97 & 0.7826 & 0.9640 & 0.3958 \\
+    \midrule
+    \multicolumn{6}{l}{\textit{Efficient Mobile CNN}} \\
+    MobileNetV2 & 5.38 & 90.40 & 0.9435 & 0.9766 & 0.6779 \\
+    \midrule
+    \multicolumn{6}{l}{\textit{Residual CNN}} \\
+    ResNet-18 & 5.34 & 90.42 & 0.9436 & 0.9770 & 0.6780 \\
+    \midrule
+    \multicolumn{6}{l}{\textit{Hybrid Learning}} \\
+    MFCC+SimpleCNN-XGBoost & 8.92 & 64.31 & 0.7517 & 0.9597 & 0.3663 \\
+    MobileNetV2-XGBoost & 8.74 & 91.98 & 0.9538 & 0.9722 & 0.6771 \\
+    \bottomrule
+  \end{tabular}
+\end{table}

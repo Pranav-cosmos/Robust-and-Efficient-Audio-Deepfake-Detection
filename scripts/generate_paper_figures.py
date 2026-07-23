@@ -1,7 +1,7 @@
 """Generate publication-ready figures for the research paper.
 
 Produces:
-    Figure 1: EER bar chart across all 5 benchmark models
+    Figure 1: EER bar chart across all benchmark models
     Figure 2: Accuracy bar chart
     Figure 3: ROC curves (TPR vs FPR for trained models)
     Figure 4: Multi-metric radar / spider chart
@@ -60,7 +60,7 @@ STYLE = {
 }
 plt.rcParams.update(STYLE)
 
-PALETTE = ["#2196F3", "#F44336", "#4CAF50", "#FF9800", "#9C27B0"]
+PALETTE = ["#2196F3", "#F44336", "#4CAF50", "#FF9800", "#9C27B0", "#009688", "#795548"]
 
 MODEL_DISPLAY = {
     "random_forest": "Random Forest",
@@ -68,9 +68,19 @@ MODEL_DISPLAY = {
     "simple_cnn":    "Simple CNN",
     "mobilenetv2":   "MobileNetV2",
     "resnet18":      "ResNet-18",
+    "hybrid_mfcc_cnn_xgboost": "MFCC+SimpleCNN-XGBoost",
+    "hybrid_mobilenetv2_xgboost": "MobileNetV2-XGBoost",
 }
 
-TABLE_ORDER = ["random_forest", "xgboost", "simple_cnn", "mobilenetv2", "resnet18"]
+TABLE_ORDER = [
+    "random_forest",
+    "xgboost",
+    "simple_cnn",
+    "mobilenetv2",
+    "resnet18",
+    "hybrid_mfcc_cnn_xgboost",
+    "hybrid_mobilenetv2_xgboost",
+]
 
 
 def save_fig(fig, path: str) -> None:
@@ -141,18 +151,28 @@ def fig_accuracy_bar(aggregated: dict, out_dir: str) -> None:
     save_fig(fig, os.path.join(out_dir, "fig2_accuracy_bar.png"))
 
 
-def fig_roc_curves(results_dir: str, out_dir: str, allowed_models: set | None = None) -> None:
+def fig_roc_curves(scores_dirs: list[str], out_dir: str, allowed_models: set | None = None) -> None:
     """Figure 3: ROC curves from saved val_scores.npz files."""
     print("\n[FIG 3] ROC curves")
     if not HAS_SKLEARN:
         return
 
-    scores_files = list(Path(results_dir).rglob("eval_scores.npz"))
-    if not scores_files:
-        scores_files = list(Path(results_dir).rglob("val_scores.npz"))
-    if not scores_files:
+    by_model = {}
+    for scores_dir in scores_dirs:
+        root = Path(scores_dir)
+        if not root.exists():
+            continue
+        for score_name in ("eval_scores.npz", "val_scores.npz"):
+            for scores_file in sorted(root.rglob(score_name)):
+                model_name = scores_file.parent.name
+                if allowed_models is not None and model_name not in allowed_models:
+                    continue
+                if score_name == "eval_scores.npz" or model_name not in by_model:
+                    by_model[model_name] = scores_file
+    if not by_model:
         print("  [INFO] No val_scores.npz found. Skipping ROC curves.")
         return
+    scores_files = [by_model[m] for m in TABLE_ORDER if m in by_model]
 
     fig, ax = plt.subplots(figsize=(7, 6))
     ax.plot([0, 1], [0, 1], "k--", alpha=0.5, label="Chance")
@@ -300,6 +320,8 @@ def main():
     parser.add_argument("--config", type=str, default="configs/base_config.yaml")
     parser.add_argument("--results", type=str, default=None)
     parser.add_argument("--output_dir", type=str, default=None)
+    parser.add_argument("--scores_dir", type=str, action="append", default=None,
+                        help="Directory to search for eval_scores.npz/val_scores.npz. Can be passed multiple times.")
     parser.add_argument("--models", nargs="+", choices=TABLE_ORDER, default=None,
                         help="Only include this completed model subset in score-based figures")
     args = parser.parse_args()
@@ -308,7 +330,8 @@ def main():
     paths = config.get("paths", {})
 
     results_path = args.results or os.path.join(paths.get("results", "./results"), "all_results.json")
-    results_dir = str(Path(results_path).parent) if args.results else paths.get("results", "./results")
+    default_scores_dir = str(Path(results_path).parent) if args.results else paths.get("results", "./results")
+    scores_dirs = args.scores_dir or [default_scores_dir]
     out_dir = args.output_dir or paths.get("paper_figures", "./paper_figures")
 
     print("=" * 60)
@@ -323,7 +346,7 @@ def main():
 
     fig_eer_bar(aggregated, out_dir)
     fig_accuracy_bar(aggregated, out_dir)
-    fig_roc_curves(results_dir, out_dir, set(args.models) if args.models else None)
+    fig_roc_curves(scores_dirs, out_dir, set(args.models) if args.models else None)
     fig_metrics_radar(aggregated, out_dir)
     fig_mfcc_visualization(config, out_dir)
     fig_efficiency_scatter(aggregated, out_dir)

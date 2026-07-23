@@ -1,0 +1,29 @@
+============================================================
+GENERATING PAPER FIGURES
+============================================================
+
+[FIG 1] EER bar chart
+  [SAVED] C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test\fig1_eer_bar.png
+  [SAVED] C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test\fig1_eer_bar.pdf
+
+[FIG 2] Accuracy comparison
+  [SAVED] C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test\fig2_accuracy_bar.png
+  [SAVED] C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test\fig2_accuracy_bar.pdf
+
+[FIG 3] ROC curves
+  [SAVED] C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test\fig3_roc_curves.png
+  [SAVED] C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test\fig3_roc_curves.pdf
+
+[FIG 4] Metrics radar chart
+  [SAVED] C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test\fig4_radar_chart.png
+  [SAVED] C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test\fig4_radar_chart.pdf
+
+[FIG 5] MFCC feature visualization
+  [SAVED] C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test\fig5_mfcc_visualization.png
+  [SAVED] C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test\fig5_mfcc_visualization.pdf
+
+[FIG 6] Efficiency scatter (Time vs EER %)
+  [SAVED] C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test\fig6_efficiency_scatter.png
+  [SAVED] C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test\fig6_efficiency_scatter.pdf
+
+[DONE] Figures saved to: C:\Users\Hp\VSCODE\codes and scripts\paper_figures\hybrid_smoke_test

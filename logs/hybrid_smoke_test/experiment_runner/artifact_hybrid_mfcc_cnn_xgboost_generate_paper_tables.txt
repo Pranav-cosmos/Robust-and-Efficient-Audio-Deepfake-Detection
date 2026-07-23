@@ -1,0 +1,16 @@
+============================================================
+GENERATING PAPER TABLES
+============================================================
+
+Loading results: C:\Users\Hp\VSCODE\codes and scripts\results\hybrid_smoke_test\all_results.json
+  Models found: ['hybrid_mfcc_cnn_xgboost', 'mobilenetv2', 'random_forest', 'resnet18', 'simple_cnn', 'xgboost']
+
+[TABLE 1] Performance comparison
+  [LaTeX] C:\Users\Hp\VSCODE\codes and scripts\results\hybrid_smoke_test\paper_tables\table1_performance.tex
+  [CSV]   C:\Users\Hp\VSCODE\codes and scripts\results\hybrid_smoke_test\paper_tables\table1_performance.csv
+
+[TABLE 2] Training efficiency
+  [LaTeX] C:\Users\Hp\VSCODE\codes and scripts\results\hybrid_smoke_test\paper_tables\table2_efficiency.tex
+  [CSV]   C:\Users\Hp\VSCODE\codes and scripts\results\hybrid_smoke_test\paper_tables\table2_efficiency.csv
+
+[DONE] Tables saved to: C:\Users\Hp\VSCODE\codes and scripts\results\hybrid_smoke_test\paper_tables
